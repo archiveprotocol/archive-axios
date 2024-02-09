@@ -1,0 +1,75 @@
+{
+  "name": "archive-axios",
+  "version": "1.0.35",
+  "description": "",
+  "source": "src/index.ts",
+  "module": "dist/module.js",
+  "main": "dist/main.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "test": "jest test/unit",
+    "test:ci": "jest test/unit --verbose --forceExit --collectCoverage --ci --reporters=default --reporters=jest-junit --watchAll=false --maxWorkers=2 --detectOpenHandles",
+    "watch": "parcel watch",
+    "format": "prettier --write src/**/*.ts test/**/*.ts",
+    "build": "parcel build",
+    "prepare": "husky install"
+  },
+  "repository": "https://github.com/archiveprotocol/archive-axios.git",
+  "keywords": [],
+  "author": "Archive Protocol <hello@archiveprotocol.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/archiveprotocol/archive-axios/issues"
+  },
+  "homepage": "https://github.com/archiveprotocol/archive-axios#readme",
+  "dependencies": {
+    "axios": "1.5.0",
+    "axios-cache-interceptor": "1.3.2",
+    "axios-retry": "3.7.0",
+    "dotenv": "16.3.1",
+    "kafkajs": "2.2.4",
+    "log4js": "6.9.1",
+    "logging-library": "https://github.com/archiveprotocol/logging-library.git#v1.0.27",
+    "logging-queue-interfaces": "https://github.com/archiveprotocol/logging-queue-interfaces.git#v1.0.17",
+    "redis": "4.6.8"
+  },
+  "engines": {
+    "node": "20.9.0",
+    "yarn": "3.6.3"
+  },
+  "devDependencies": {
+    "@fluffy-spoon/substitute": "1.208.0",
+    "@parcel/core": "2.10.1",
+    "@parcel/packager-ts": "2.10.1",
+    "@parcel/transformer-typescript-types": "2.10.1",
+    "@trivago/prettier-plugin-sort-imports": "4.2.0",
+    "@types/jest": "29.5.4",
+    "@types/node": "20.6.0",
+    "@typescript-eslint/eslint-plugin": "6.7.0",
+    "@typescript-eslint/parser": "6.7.0",
+    "axios-mock-adapter": "1.22.0",
+    "eslint": "8.49.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-prettier": "5.0.0",
+    "husky": "8.0.3",
+    "jest": "29.7.0",
+    "jest-junit": "16.0.0",
+    "lint-staged": "14.0.1",
+    "parcel": "2.10.1",
+    "prettier": "3.0.3",
+    "ts-jest": "29.1.1",
+    "ts-loader": "9.4.4",
+    "ts-md5": "1.3.1",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint",
+      "prettier --ignore-unknown --write"
+    ],
+    "*.js": "eslint --cache --fix"
+  },
+  "packageManager": "yarn@3.6.3"
+}
