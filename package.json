@@ -29,7 +29,7 @@
     "dotenv": "16.3.1",
     "kafkajs": "2.2.4",
     "log4js": "6.9.1",
-    "logging-library": "https://github.com/archiveprotocol/logging-library.git#v1.0.27",
+    "logging-library": "https://github.com/archiveprotocol/logging-library.git#v1.0.30",
     "logging-queue-interfaces": "https://github.com/archiveprotocol/logging-queue-interfaces.git#v1.0.17",
     "redis": "4.6.8"
   },
