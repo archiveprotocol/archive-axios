@@ -2625,7 +2625,7 @@ __metadata:
     kafkajs: 2.2.4
     lint-staged: 14.0.1
     log4js: 6.9.1
-    logging-library: "https://github.com/archiveprotocol/logging-library.git#v1.0.30"
+    logging-library: "https://github.com/archiveprotocol/logging-library.git#v1.0.31"
     logging-queue-interfaces: "https://github.com/archiveprotocol/logging-queue-interfaces.git#v1.0.17"
     parcel: 2.10.1
     prettier: 3.0.3
@@ -5943,12 +5943,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"logging-library@https://github.com/archiveprotocol/logging-library.git#v1.0.30":
-  version: 1.0.30
-  resolution: "logging-library@https://github.com/archiveprotocol/logging-library.git#commit=0503d074618dbc712b35036fb59123617acdfb3e"
+"logging-library@https://github.com/archiveprotocol/logging-library.git#v1.0.31":
+  version: 1.0.31
+  resolution: "logging-library@https://github.com/archiveprotocol/logging-library.git#commit=1dbd3de0153167742f8edb93f45077bdb3d9404a"
   dependencies:
     kafkajs: 2.2.4
-  checksum: 4022f7a74282fcf3f31d97bde5f903f78d957ccc59480cd3fe2a3125b457b2e261935b9f4d80d50452c87efb02d016a72aae54aea186645267c7c3ebfeebc233
+  checksum: 3bf0959e924ed50324d5cb751ecbea4efefbb9d324b685b6c160b52ed0bce0904b0f37e462a164c02ad393f671ac9598636f5dfa440b4c5b78459a51a0fea431
   languageName: node
   linkType: hard
 
