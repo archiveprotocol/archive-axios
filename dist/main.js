@@ -1,5 +1,4 @@
 var $hpDYS$axios = require("axios");
-var $hpDYS$axioscacheinterceptor = require("axios-cache-interceptor");
 var $hpDYS$axiosretry = require("axios-retry");
 var $hpDYS$dotenv = require("dotenv");
 var $hpDYS$logginglibrarylibLoggerManager = require("logging-library/lib/LoggerManager");
@@ -35,7 +34,6 @@ $parcel$export($ede67e93dd3b909c$exports, "CacheDuration", () => $ede67e93dd3b90
 $parcel$export($ede67e93dd3b909c$exports, "ApAxiosManager", () => $ede67e93dd3b909c$export$ff5d21df453f62e1);
 
 
-
 var $ede67e93dd3b909c$export$4ce520e9555bb0b2;
 (function(CacheDuration) {
     CacheDuration[CacheDuration["NO_CACHE"] = 0] = "NO_CACHE";
@@ -51,7 +49,6 @@ class $ede67e93dd3b909c$export$ff5d21df453f62e1 {
     setup(config) {
         this.config = config;
         this.setupNoCacheDurationInstance();
-        this.setupShortCacheDurationAxiosInstance();
     }
     setRequestId(requestId) {
         this.requestId = requestId;
@@ -65,19 +62,6 @@ class $ede67e93dd3b909c$export$ff5d21df453f62e1 {
         shortDurationInstance.interceptors.request.use((config)=>this.requestInterceptorOnFulfilled(config), (error)=>this.requestInterceptorOnRejected(error));
         shortDurationInstance.interceptors.response.use((response)=>this.responseInterceptorOnFulfilled(response), (error)=>this.responseInterceptorOnRejected(error));
         this.cacheToAxiosInstance.set(0, shortDurationInstance);
-    }
-    setupShortCacheDurationAxiosInstance() {
-        const shortDurationInstance = (0, ($parcel$interopDefault($hpDYS$axios))).create(this.config);
-        (0, ($parcel$interopDefault($hpDYS$axiosretry)))((0, ($parcel$interopDefault($hpDYS$axios))), {
-            retries: 2,
-            retryDelay: (0, ($parcel$interopDefault($hpDYS$axiosretry))).exponentialDelay
-        });
-        shortDurationInstance.interceptors.request.use((config)=>this.requestInterceptorOnFulfilled(config), (error)=>this.requestInterceptorOnRejected(error));
-        shortDurationInstance.interceptors.response.use((response)=>this.responseInterceptorOnFulfilled(response), (error)=>this.responseInterceptorOnRejected(error));
-        (0, $hpDYS$axioscacheinterceptor.setupCache)(shortDurationInstance, {
-            storage: (0, $hpDYS$axioscacheinterceptor.buildMemoryStorage)(false)
-        });
-        this.cacheToAxiosInstance.set(1, shortDurationInstance);
     }
     async requestInterceptorOnFulfilled(config) {
         this.assertRequestAllowed(config.url);

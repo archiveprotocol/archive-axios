@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { InternalAxiosRequestConfig } from 'axios';
-import { buildMemoryStorage, setupCache } from 'axios-cache-interceptor';
 import { CacheAxiosResponse } from 'axios-cache-interceptor/dist/cache/axios';
 import axiosRetry from 'axios-retry';
 import { CreateAxiosDefaults } from 'axios/index';
@@ -35,7 +34,6 @@ export class ApAxiosManager {
   setup(config?: CreateAxiosDefaults): void {
     this.config = config;
     this.setupNoCacheDurationInstance();
-    this.setupShortCacheDurationAxiosInstance();
   }
 
   setRequestId(requestId: string): void {
@@ -56,22 +54,6 @@ export class ApAxiosManager {
     );
 
     this.cacheToAxiosInstance.set(CacheDuration.NO_CACHE, shortDurationInstance);
-  }
-
-  private setupShortCacheDurationAxiosInstance() {
-    const shortDurationInstance = axios.create(this.config);
-    axiosRetry(axios, { retries: 2, retryDelay: axiosRetry.exponentialDelay });
-    shortDurationInstance.interceptors.request.use(
-      (config: MyRequestConfig) => this.requestInterceptorOnFulfilled(config),
-      (error: any) => this.requestInterceptorOnRejected(error),
-    );
-
-    shortDurationInstance.interceptors.response.use(
-      (response: AxiosResponse) => this.responseInterceptorOnFulfilled(response),
-      (error: AxiosError) => this.responseInterceptorOnRejected(error),
-    );
-    setupCache(shortDurationInstance, { storage: buildMemoryStorage(false) });
-    this.cacheToAxiosInstance.set(CacheDuration.SHORT_CACHE_DURATION, shortDurationInstance);
   }
 
   private async requestInterceptorOnFulfilled(config: MyRequestConfig) {

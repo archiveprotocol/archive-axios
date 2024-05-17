@@ -1,5 +1,4 @@
 import $5q6vG$axios from "axios";
-import {setupCache as $5q6vG$setupCache, buildMemoryStorage as $5q6vG$buildMemoryStorage} from "axios-cache-interceptor";
 import $5q6vG$axiosretry from "axios-retry";
 import {config as $5q6vG$config} from "dotenv";
 import {LoggerManager as $5q6vG$LoggerManager} from "logging-library/lib/LoggerManager";
@@ -12,7 +11,6 @@ var $602978080c6cf3eb$exports = {};
 
 $parcel$export($602978080c6cf3eb$exports, "CacheDuration", () => $602978080c6cf3eb$export$4ce520e9555bb0b2);
 $parcel$export($602978080c6cf3eb$exports, "ApAxiosManager", () => $602978080c6cf3eb$export$ff5d21df453f62e1);
-
 
 
 var $602978080c6cf3eb$export$4ce520e9555bb0b2;
@@ -30,7 +28,6 @@ class $602978080c6cf3eb$export$ff5d21df453f62e1 {
     setup(config) {
         this.config = config;
         this.setupNoCacheDurationInstance();
-        this.setupShortCacheDurationAxiosInstance();
     }
     setRequestId(requestId) {
         this.requestId = requestId;
@@ -44,19 +41,6 @@ class $602978080c6cf3eb$export$ff5d21df453f62e1 {
         shortDurationInstance.interceptors.request.use((config)=>this.requestInterceptorOnFulfilled(config), (error)=>this.requestInterceptorOnRejected(error));
         shortDurationInstance.interceptors.response.use((response)=>this.responseInterceptorOnFulfilled(response), (error)=>this.responseInterceptorOnRejected(error));
         this.cacheToAxiosInstance.set(0, shortDurationInstance);
-    }
-    setupShortCacheDurationAxiosInstance() {
-        const shortDurationInstance = (0, $5q6vG$axios).create(this.config);
-        (0, $5q6vG$axiosretry)((0, $5q6vG$axios), {
-            retries: 2,
-            retryDelay: (0, $5q6vG$axiosretry).exponentialDelay
-        });
-        shortDurationInstance.interceptors.request.use((config)=>this.requestInterceptorOnFulfilled(config), (error)=>this.requestInterceptorOnRejected(error));
-        shortDurationInstance.interceptors.response.use((response)=>this.responseInterceptorOnFulfilled(response), (error)=>this.responseInterceptorOnRejected(error));
-        (0, $5q6vG$setupCache)(shortDurationInstance, {
-            storage: (0, $5q6vG$buildMemoryStorage)(false)
-        });
-        this.cacheToAxiosInstance.set(1, shortDurationInstance);
     }
     async requestInterceptorOnFulfilled(config) {
         this.assertRequestAllowed(config.url);

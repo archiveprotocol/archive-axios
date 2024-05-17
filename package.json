@@ -1,6 +1,6 @@
 {
   "name": "archive-axios",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "",
   "source": "src/index.ts",
   "module": "dist/module.js",
